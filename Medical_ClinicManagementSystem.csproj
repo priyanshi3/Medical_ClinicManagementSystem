@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="pages\login.aspx" />
     <Content Include="pages\receptionist\addNewPatient.aspx" />
+    <Content Include="pages\receptionist\appointment.aspx" />
     <Content Include="pages\receptionist\dashboard.aspx" />
     <Content Include="pages\receptionist\updatePatient.aspx" />
     <Content Include="Web.config" />
@@ -87,6 +88,13 @@
     </Compile>
     <Compile Include="pages\receptionist\addNewPatient.aspx.designer.cs">
       <DependentUpon>addNewPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\receptionist\appointment.aspx.cs">
+      <DependentUpon>appointment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\receptionist\appointment.aspx.designer.cs">
+      <DependentUpon>appointment.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\receptionist\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
