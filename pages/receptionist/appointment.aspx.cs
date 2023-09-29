@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Threading;
 
 namespace Medical_ClinicManagementSystem.pages.receptionist
 {
@@ -47,12 +48,7 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
         {
             if(fname == null && lname == null)
             {
-                Response.Write("Patient does not exist");
-                Button AddPatient = new Button();
-                AddPatient.Text = "Add Patient";
-                //AddPatient.Left = 10; AddPatient.Top = 10;  //the button's location
-                AddPatient.Click += new EventHandler(btnAddPtient_Click); 
-                this.Controls.Add(AddPatient);
+                Response.Redirect("~/pages/receptionist/addNewPatient.aspx");
             }
             else
             {
@@ -60,8 +56,8 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["Clinic"].ConnectionString;
                 try
                 {
-                    string query = "insert into appointment (fname, lname, age, blood_group, symptoms)" +
-                        "values(@fname, @lname, @age, @blood_group, @symptoms)";
+                    string query = "insert into appointments (fname, lname, age, blood_group, symptoms, date)" +
+                        "values(@fname, @lname, @age, @blood_group, @symptoms, @date)";
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     cmd.Parameters.AddWithValue("@fname", fname);
@@ -69,9 +65,11 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
                     cmd.Parameters.AddWithValue("@age", age);
                     cmd.Parameters.AddWithValue("@blood_group", blood_group);
                     cmd.Parameters.AddWithValue("@symptoms", txtSymptoms.Text);
+                    cmd.Parameters.AddWithValue("@date", DateTime.Now);
                     cmd.ExecuteNonQuery();
 
                     con.Close();
+                    Response.Redirect("~/pages/receptionist/dashboard.aspx");
                 }
                 catch (Exception ex)
                 {
@@ -79,11 +77,6 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
                 }
             }
             
-        }
-
-        protected void btnAddPtient_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/pages/receptionist/addNewPatient.aspx");
         }
     }
 }

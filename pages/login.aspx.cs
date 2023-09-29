@@ -32,7 +32,15 @@ namespace Medical_ClinicManagementSystem.pages
                     {
                         if (String.Equals(txtPassword.Text, sdr["password"]))
                         {
-                            Response.Redirect("~/pages/receptionist/dashboard.aspx");
+                            if(String.Equals(txtUsername.Text, "doctor"))
+                            {
+                                Response.Redirect("~/pages/doctor/dashboard.aspx");
+                            }
+                            else
+                            {
+                                Response.Redirect("~/pages/receptionist/dashboard.aspx");
+                            }
+                            
                         }
                     }
                     Response.Write("<center> Incorrect Username or Password </center>");
