@@ -11,7 +11,7 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblUser.Text = (string)Session["username_r"];
         }
 
         protected void btnAddPatient_Click(object sender, EventArgs e)
@@ -26,7 +26,17 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
 
         protected void btnAppointment_Click(object sender, EventArgs e)
         {
+            Response.Redirect("~/pages/receptionist/appointment.aspx");
 
+        }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            if (Session["username_r"] != null)
+            {
+                Session.Remove("username_r");
+                Response.Redirect("~/pages/login.aspx");
+            }
         }
     }
 }

@@ -8,32 +8,30 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Threading;
+using System.Data;
 
 namespace Medical_ClinicManagementSystem.pages.receptionist
 {
     public partial class Appointment : System.Web.UI.Page
     {
-        String fname, lname, blood_group;
-        int age;
+        int pid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblUser.Text = (string)Session["username_r"];
             SqlConnection con = new SqlConnection();
             con.ConnectionString = ConfigurationManager.ConnectionStrings["Clinic"].ConnectionString;
             try
             {
                 using(con)
                 {
-                    string query = "select * from patient where first_name = '" + txtFname.Text + "' and last_name = '" + txtLname.Text + "'";
+                    string query = "select p_id from patient where contact_number = '" + txtPhnNum.Text + "'";
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
                     while (sdr.Read())
                     {
-                        fname = (string)sdr["first_name"];
-                        lname = (string)sdr["last_name"];
-                        age = (int)sdr["age"];
-                        blood_group = (string)sdr["blood_group"];
+                        pid = (int)sdr["p_id"];
                     }
                     con.Close();
                 }  
@@ -41,42 +39,44 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
             catch (Exception ex)
             {
                 Response.Write("Error : " + ex.Message);
-            }
+            } 
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if(fname == null && lname == null)
-            {
-                Response.Redirect("~/pages/receptionist/addNewPatient.aspx");
-            }
-            else
-            {
+           
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["Clinic"].ConnectionString;
                 try
                 {
-                    string query = "insert into appointments (fname, lname, age, blood_group, symptoms, date)" +
-                        "values(@fname, @lname, @age, @blood_group, @symptoms, @date)";
+                    string query = "insert into appointments (p_id, symptoms, date)" +
+                        "values(@p_id, @symptoms, @date)";
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
-                    cmd.Parameters.AddWithValue("@fname", fname);
-                    cmd.Parameters.AddWithValue("@lname", lname);
-                    cmd.Parameters.AddWithValue("@age", age);
-                    cmd.Parameters.AddWithValue("@blood_group", blood_group);
+                    cmd.Parameters.AddWithValue("@p_id", pid);
                     cmd.Parameters.AddWithValue("@symptoms", txtSymptoms.Text);
                     cmd.Parameters.AddWithValue("@date", DateTime.Now);
                     cmd.ExecuteNonQuery();
 
                     con.Close();
-                    Response.Redirect("~/pages/receptionist/dashboard.aspx");
+                    Response.Redirect("~/pages/receptionist/receptionist_dashboard.aspx");
                 }
+                catch (SqlException ex)
+                {
+                    Response.Write("<script>alert('Patient is new!!!');window.location = 'addNewPatient.aspx';</script>");
+            }
                 catch (Exception ex)
                 {
                     Response.Write("Error : " + ex.Message);
-                }
+                }            
+        }
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            if (Session["username_r"] != null)
+            {
+                Session.Remove("username_r");
+                Response.Redirect("~/pages/login.aspx");
             }
-            
         }
     }
 }

@@ -1,22 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="appointment.aspx.cs" Inherits="Medical_ClinicManagementSystem.pages.receptionist.Appointment" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="receptionist_dashboard.aspx.cs" Inherits="Medical_ClinicManagementSystem.pages.receptionist.dashboard" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style type="text/css">
-        .auto-style1 {
-            width: 45%;
-            margin: auto;
-        }
-        .auto-style3 {
-            width: 50%;
-            text-align: center;
-            padding: 10px;
-        }
+    <style>
         #form1 {
             margin: auto;
             position: relative;
@@ -29,11 +20,6 @@
             border-radius: 25px !important;
 			box-shadow: 2px 3px 10px !important;
             padding: 80px 20px !important;
-        }
-        .auto-style2 {
-            width: 55%;
-            text-align: center;
-            padding: 10px;
         }
 
         /*logout*/
@@ -216,8 +202,8 @@ h1 {
     </style>
 </head>
 <body>
-	<form runat="server">
-    <header>
+	<form runat="server">x
+	<header>
         <div class="nav-wrapper">
             <div class="logo-container">
                 <div class="logo" > GETWELL CLINIC</div>
@@ -243,42 +229,15 @@ h1 {
         </div>
     </header>
     <div id="form1" class="shadow-lg p-3 mb-5 bg-white rounded" >
-        <table class="auto-style1">
-            <tr>
-                <td class="auto-style2">
-                    <b> <asp:Label ID="lblFname" runat="server" Text="Contact Number"></asp:Label> </b>
-                </td>
-                <td class="auto-style2">
-                    <asp:TextBox ID="txtPhnNum" runat="server"></asp:TextBox>
-                </td>
-                <td class="auto-style2">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPhnNum" Display="Dynamic" ErrorMessage="Contact Number required" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <br />
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPhnNum" Display="Dynamic" ErrorMessage="Must be of 10 digits" ForeColor="Red" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <b> <asp:Label ID="lblSymptoms" runat="server" Text="Symptoms"></asp:Label> </b>
-                </td>
-                <td class="auto-style2">
-                    <asp:TextBox ID="txtSymptoms" runat="server" TextMode="MultiLine"></asp:TextBox>
-                </td>
-                <td class="auto-style2">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSymptoms" Display="Dynamic" ErrorMessage="Symptoms required" ForeColor="Red"></asp:RequiredFieldValidator>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style3" colspan="2">
-                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" class="btn btn-primary"/>
-                </td>
-                <td class="auto-style3">
-                    &nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-        <div>
-        </div>
+        <div> <center>
+            <asp:Button ID="btnAddPatient" runat="server" OnClick="btnAddPatient_Click" Text="Add New Patient" class="btn btn-primary"/><br /><br />
+        </center> </div>
+        <div> <center>
+            <asp:Button ID="btnUpdatePatient" runat="server" OnClick="btnUpdatePatient_Click" Text="Update Patient" class="btn btn-primary"/><br /><br />
+        </center> </div>
+        <div> <center>
+            <asp:Button ID="btnAppointment" runat="server" OnClick="btnAppointment_Click" Text="Appointment" class="btn btn-primary"/>
+        </center> </div>
     </div>
 	</form>
 </body>

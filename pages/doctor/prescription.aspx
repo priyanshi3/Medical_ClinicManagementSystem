@@ -1,15 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="appointment.aspx.cs" Inherits="Medical_ClinicManagementSystem.pages.receptionist.Appointment" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="prescription.aspx.cs" Inherits="Medical_ClinicManagementSystem.pages.doctor.prescription" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style type="text/css">
         .auto-style1 {
-            width: 45%;
+            width: 40%;
             margin: auto;
         }
         .auto-style3 {
@@ -50,7 +50,6 @@
         html,
 body {
 	margin: 0;
-	
 }
 
 body {
@@ -82,6 +81,7 @@ h1 {
 	z-index: 2;
 	background: #fff;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
 }
 
 .logo-container {
@@ -216,7 +216,7 @@ h1 {
     </style>
 </head>
 <body>
-	<form runat="server">
+    <form runat="server">
     <header>
         <div class="nav-wrapper">
             <div class="logo-container">
@@ -242,44 +242,89 @@ h1 {
             </nav>
         </div>
     </header>
-    <div id="form1" class="shadow-lg p-3 mb-5 bg-white rounded" >
+    <div id="form1" class="shadow-lg p-3 mb-5 bg-white rounded">
         <table class="auto-style1">
             <tr>
                 <td class="auto-style2">
-                    <b> <asp:Label ID="lblFname" runat="server" Text="Contact Number"></asp:Label> </b>
+                    <b> <asp:Label ID="Label1" runat="server" Text="First Name "></asp:Label> </b>
                 </td>
                 <td class="auto-style2">
-                    <asp:TextBox ID="txtPhnNum" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtFirstName" runat="server" ReadOnly="True"></asp:TextBox>
                 </td>
                 <td class="auto-style2">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPhnNum" Display="Dynamic" ErrorMessage="Contact Number required" ForeColor="Red"></asp:RequiredFieldValidator>
-                    <br />
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtPhnNum" Display="Dynamic" ErrorMessage="Must be of 10 digits" ForeColor="Red" ValidationExpression="[0-9]{10}"></asp:RegularExpressionValidator>
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <b> <asp:Label ID="lblSymptoms" runat="server" Text="Symptoms"></asp:Label> </b>
+                    <b> <asp:Label ID="Label2" runat="server" Text="Last Name "></asp:Label> </b>
                 </td>
                 <td class="auto-style2">
-                    <asp:TextBox ID="txtSymptoms" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    <asp:TextBox ID="txtLastname" runat="server" ReadOnly="True"></asp:TextBox>
                 </td>
                 <td class="auto-style2">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtSymptoms" Display="Dynamic" ErrorMessage="Symptoms required" ForeColor="Red"></asp:RequiredFieldValidator>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <b> <asp:Label ID="Label3" runat="server" Text="Age"></asp:Label> </b>
+                </td>
+                <td class="auto-style2">
+                    <asp:TextBox ID="txtAge" runat="server" ReadOnly="True" TextMode="Number"></asp:TextBox>
+                </td>
+                <td class="auto-style2">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <b> <asp:Label ID="Label4" runat="server" Text="Blood Group "></asp:Label> </b>
+                </td>
+                <td class="auto-style2">
+                    <asp:TextBox ID="txtBloodGroup" runat="server" ReadOnly="True"></asp:TextBox>
+                </td>
+                <td class="auto-style2">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <b> <asp:Label ID="Label5" runat="server" Text="Symptoms "></asp:Label> </b>
+                </td>
+                <td class="auto-style2">
+                    <asp:TextBox ID="txtSymptoms" runat="server" ReadOnly="True" TextMode="MultiLine"></asp:TextBox>
+                </td>
+                <td class="auto-style2">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <b> <asp:Label ID="lblLastVisit" runat="server" Text="Last Visit"></asp:Label> </b>
+                </td>
+                <td class="auto-style2">
+                    <asp:Label ID="lblLastVisitData" runat="server"></asp:Label>
+                </td>
+                <td class="auto-style2">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style2">
+                    <b> <asp:Label ID="Label6" runat="server" Text="Prescription"></asp:Label> </b>
+                </td>
+                <td class="auto-style2">
+                    <asp:TextBox ID="txtPrescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+                </td>
+                <td class="auto-style2">
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPrescription" ErrorMessage="Prescription required" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style3" colspan="2">
-                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" class="btn btn-primary"/>
+                    <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" class="btn btn-primary" />
                 </td>
                 <td class="auto-style3">
                     &nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
         </table>
-        <div>
-        </div>
     </div>
-	</form>
+    </form>
 </body>
 </html>

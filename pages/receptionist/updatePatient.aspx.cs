@@ -14,6 +14,8 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblUser.Text = (string)Session["username_r"];
+
             lblFirstName.Visible = false;
             lblLastName.Visible = false;
             lblPhnNum.Visible = false;
@@ -58,7 +60,7 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
                     
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    Response.Redirect("~/pages/receptionist/dashboard.aspx");
+                    Response.Redirect("~/pages/receptionist/receptionist_dashboard.aspx");
                 }
             }
             catch (Exception ex)
@@ -119,6 +121,15 @@ namespace Medical_ClinicManagementSystem.pages.receptionist
             catch (Exception ex)
             {
                 Response.Write("Error : " + ex.Message);
+            }
+        }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            if (Session["username_r"] != null)
+            {
+                Session.Remove("username_r");
+                Response.Redirect("~/pages/login.aspx");
             }
         }
     }

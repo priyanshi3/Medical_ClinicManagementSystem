@@ -23,7 +23,8 @@ namespace Medical_ClinicManagementSystem.pages
             try
             {
                 using(con)
-                {
+                {   
+                    //admin
                     string query = "select * from users where username = '" + txtUsername.Text + "'";
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
@@ -32,18 +33,57 @@ namespace Medical_ClinicManagementSystem.pages
                     {
                         if (String.Equals(txtPassword.Text, sdr["password"]))
                         {
-                            if(String.Equals(txtUsername.Text, "doctor"))
-                            {
-                                Response.Redirect("~/pages/doctor/dashboard.aspx");
-                            }
-                            else
-                            {
-                                Response.Redirect("~/pages/receptionist/dashboard.aspx");
-                            }
-                            
+                            Session["username_a"] = txtUsername.Text;
+                            Response.Redirect("~/pages/admin/admin_dashboard.aspx");
                         }
                     }
-                    Response.Write("<center> Incorrect Username or Password </center>");
+                    con.Close();
+
+                    //doctor
+                    query = "select * from doctors where doctor_name = '" + txtUsername.Text + "'";
+                    cmd = new SqlCommand(query, con);
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
+                    {
+                        if (String.Equals(txtPassword.Text, sdr["d_password"]))
+                        {
+                            Session["username_d"] = txtUsername.Text;
+                            Response.Redirect("~/pages/doctor/doctor_dashboard.aspx");
+                        }
+                    }
+                    con.Close();
+
+                    //receptionist
+                    query = "select * from receptionist where receptionist_username = '" + txtUsername.Text + "'";
+                    cmd = new SqlCommand(query, con);
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
+                    {
+                        if (String.Equals(txtPassword.Text, sdr["r_password"]))
+                        {
+                            Session["username_r"] = txtUsername.Text;
+                            Response.Redirect("~/pages/receptionist/receptionist_dashboard.aspx");
+                        }
+                    }
+                    con.Close();
+
+                    //pharmacist
+                    query = "select * from pharmacist where pharmacist_username = '" + txtUsername.Text + "'";
+                    cmd = new SqlCommand(query, con);
+                    con.Open();
+                    sdr = cmd.ExecuteReader();
+                    while (sdr.Read())
+                    {
+                        if (String.Equals(txtPassword.Text, sdr["p_password"]))
+                        {
+                            Session["username_p"] = txtUsername.Text;
+                            Response.Redirect("~/pages/pharmacist/pharmacist_dashboard.aspx");
+                        }
+                    }
+                    con.Close();
+                    Response.Write("<script>alert('Incorrect Username or Password');</script>");
                 }
             }
             catch (Exception ex)
