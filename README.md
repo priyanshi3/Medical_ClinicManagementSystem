@@ -8,9 +8,9 @@
   
   The User in our system :  <br/>
       • Admin <br/>
-      * Receptionist <br/>
-      * Doctor <br/>
-      * Pharmacist <br/>
+      • Receptionist <br/>
+      • Doctor <br/>
+      • Pharmacist <br/>
 
   All the users will have their username and password and after entering it the user can access the dashboard page according to their designation. The dashboard is designed according to the user's work and designation.
 
