@@ -7,7 +7,7 @@
   When the user first runs the application, the user login page will be displayed where the users can enter their own given username and password. 
   
   The User in our system : 
-     MArkup: * Admin
+     Markup: * Admin
       * Receptionist
       * Doctor
       * Pharmacist
