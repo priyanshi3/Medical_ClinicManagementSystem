@@ -21,6 +21,11 @@
 			box-shadow: 2px 3px 10px !important;
             padding: 80px 20px !important;
         }
+
+		.panel {
+			 text-align: center;
+		}
+
         .link {
             text-decoration: none;
             padding: 10px;

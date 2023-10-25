@@ -22,6 +22,10 @@
             padding: 80px 20px !important;
         }
 
+		.panel {
+			 text-align: center;
+		}
+
         /*logout*/
 
         .material-symbols-outlined {

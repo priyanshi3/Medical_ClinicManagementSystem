@@ -18,13 +18,13 @@ namespace Medical_ClinicManagementSystem.pages.pharmacist
             lblUser.Text = (string) Session["username_p"];
             SqlConnection con = new SqlConnection();
             con.ConnectionString = ConfigurationManager.ConnectionStrings["Clinic"].ConnectionString;
-
             try
             {
                 using (con)
                 {
                     string query = "SELECT patient.first_name as 'First Name', patient.last_name as 'Last Name', " +
-                        "appointments.prescription, appointments.appointment_id FROM patient INNER JOIN appointments ON patient.p_id = appointments.p_id";
+                        "appointments.prescription, appointments.appointment_id FROM patient INNER JOIN appointments ON patient.p_id = appointments.p_id ";
+                        /*"where checked = null";*/
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();
@@ -79,7 +79,7 @@ namespace Medical_ClinicManagementSystem.pages.pharmacist
             {
                 using (con)
                 {
-                    string query = "update appointments set checked = '" + 1 + "' where appointment_id = " + btn.ID;
+                    string query = "update appointments set checked = '" +  1 + "' where appointment_id = " + btn.ID;
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     cmd.ExecuteNonQuery();

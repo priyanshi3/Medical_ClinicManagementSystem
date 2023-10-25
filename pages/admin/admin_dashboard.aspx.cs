@@ -41,8 +41,9 @@ namespace Medical_ClinicManagementSystem.pages.admin
                     cmd.Parameters.AddWithValue("@username", txtUsername.Text);
                     cmd.Parameters.AddWithValue("@password", txtPassword.Text);
                     cmd.ExecuteNonQuery();
-                    con.Close();
                     ShowData();
+                    con.Close();
+                    
                 }
             }
             catch (Exception ex)
@@ -53,6 +54,8 @@ namespace Medical_ClinicManagementSystem.pages.admin
 
         protected void ShowData()
         {
+            gvReceptionist.DataBind();
+            gvPharmacist.DataBind();
             if (rbReceptionist.Checked == true)
             {
                 gvReceptionist.Visible = true;

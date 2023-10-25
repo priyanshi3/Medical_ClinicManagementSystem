@@ -23,9 +23,8 @@ namespace Medical_ClinicManagementSystem.pages.doctor
                 using (con)
                 {
                     string query = "SELECT patient.first_name as 'First Name', patient.last_name as 'Last Name', " +
-                        "patient.age as Age, patient.blood_group as 'Blood Group', appointments.symptoms as Symptoms,  " +
                         "date, appointments.prescription FROM patient INNER JOIN appointments ON patient.p_id = appointments.p_id" +
-                        " where date = GETDATE()";
+                        " where date =  CAST( GETDATE() AS Date )";
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     SqlDataReader sdr = cmd.ExecuteReader();

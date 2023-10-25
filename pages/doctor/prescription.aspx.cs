@@ -39,12 +39,11 @@ namespace Medical_ClinicManagementSystem.pages.doctor
                         txtAge.Text = sdr["age"].ToString();
                         txtBloodGroup.Text = (string)sdr["blood_group"];
                         txtSymptoms.Text = (string)sdr["symptoms"];
-                        if (sdr["checked"].ToString() == "True")
+
+                        if (sdr["prescription"] != null)
                         {
-                            Response.Write("if");
                             lblLastVisitData.Text = "<b>Date: </b>" + sdr["date"] +
-                                                    "<br/><b>Prescription: </b>" + sdr["prescription"];
-                            lblLastVisitData.Visible = true;
+                                                    "<br/><b>Prescription: </b>" + (string)sdr["prescription"];
                         }
                         else
                         {

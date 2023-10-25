@@ -202,7 +202,7 @@ h1 {
     </style>
 </head>
 <body>
-	<form runat="server">x
+	<form runat="server">
 	<header>
         <div class="nav-wrapper">
             <div class="logo-container">
