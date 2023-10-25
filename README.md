@@ -7,10 +7,10 @@
   When the user first runs the application, the user login page will be displayed where the users can enter their own given username and password. 
   
   The User in our system :  <br/>
-      * Admin <br/>
+      • Admin <br/>
       * Receptionist <br/>
       * Doctor <br/>
-      * Pharmacist\
+      * Pharmacist <br/>
 
   All the users will have their username and password and after entering it the user can access the dashboard page according to their designation. The dashboard is designed according to the user's work and designation.
 
